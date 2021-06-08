@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Etain.WeatherApp.Data;
 using Etain.WeatherApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Etain.WeatherApp.Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
