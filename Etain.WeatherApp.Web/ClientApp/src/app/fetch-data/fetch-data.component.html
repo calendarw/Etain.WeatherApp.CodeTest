@@ -21,8 +21,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let forecast of forecasts">
-        }}
-        <td>{{ forecast.applicable_date }}</td>
+        <td>{{ moment(forecast.applicable_date).format('MM/DD/YYYY') }}</td>
         <td>{{ forecast.weather_state_name }}</td>
         <td><img [src]='"https://www.metaweather.com/static/img/weather/png/" + forecast.weather_state_abbr + ".png"' /></td>
       </tr>

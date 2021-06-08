@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-fetch-data',
@@ -10,6 +11,7 @@ export class FetchDataComponent {
   public forecasts: WeatherForecast[];
   httpClient: HttpClient;
   baseUrl: string;
+  moment = moment;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.httpClient = http;
@@ -33,7 +35,7 @@ export class FetchDataComponent {
 }
 
 interface WeatherForecast {
-  applicable_date: string;
+  applicable_date: Date;
   weather_state_name: string;
   weather_state_abbr: string;
 }
