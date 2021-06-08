@@ -1,22 +1,31 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<ngx-pull-to-refresh spinnerColor="#ff0000"
+                     distanceForRefresh="100"
+                     [isEnable]="true"
+                     [targetElement]="targetElement"
+                     (refresh)="refreshForecasts($event)"
+                     style="display:block;height:25%;">
 
-<p>This component demonstrates fetching data from the server.</p>
+  <h1 id="tableLabel">Weather forecast</h1>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+  <p>This component demonstrates fetching data from the server.</p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Weather State</th>
-      <th>Temp. (F)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">}}
-      <td>{{ forecast.applicable_date }}</td>
-      <td>{{ forecast.weather_state_name }}</td>
-      <td><img [src]='"https://www.metaweather.com/static/img/weather/png/" + forecast.weather_state_abbr + ".png"' /></td>
-    </tr>
-  </tbody>
-</table>
+  <p *ngIf="!forecasts"><em>Loading...</em></p>
+
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Weather State</th>
+        <th>Temp. (F)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forecast of forecasts">
+        }}
+        <td>{{ forecast.applicable_date }}</td>
+        <td>{{ forecast.weather_state_name }}</td>
+        <td><img [src]='"https://www.metaweather.com/static/img/weather/png/" + forecast.weather_state_abbr + ".png"' /></td>
+      </tr>
+    </tbody>
+  </table>
+</ngx-pull-to-refresh>
