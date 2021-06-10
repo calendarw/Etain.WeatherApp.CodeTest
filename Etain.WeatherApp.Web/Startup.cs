@@ -41,6 +41,11 @@ namespace Etain.WeatherApp.Web
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddAuthentication()
+                .AddGoogle(o =>
+                {
+                    o.ClientId = Configuration["Authentication:Google:ClientId"];
+                    o.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                })
                 .AddIdentityServerJwt();
             services.AddControllersWithViews();
             services.AddRazorPages();
