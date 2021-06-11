@@ -6,12 +6,12 @@ name: Build and deploy ASP.Net Core app to Azure Web App - EtainWeather
 on:
   push:
     branches:
-      - azure
+      - master
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -22,14 +22,11 @@ jobs:
         dotnet-version: '3.1.301'
         include-prerelease: true
 
-    - name: NuGet to restore dependencies as well as project-specific tools that are specified in the project file
-      run: nuget restore
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
 
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    - name: Run msbuild
-      run: msbuild .\Etain.WeatherApp.CodeTest.sln
+    - name: dotnet publish
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
