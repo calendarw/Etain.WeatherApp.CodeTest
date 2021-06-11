@@ -12,6 +12,7 @@ export class FetchDataComponent {
   httpClient: HttpClient;
   baseUrl: string;
   moment = moment;
+  targetElement: Element;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.httpClient = http;
@@ -20,6 +21,10 @@ export class FetchDataComponent {
     http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
+  }
+
+  ngOnInit() {
+    this.targetElement = document.querySelector('html');
   }
 
   refreshForecasts(event: Subject<any>) {
